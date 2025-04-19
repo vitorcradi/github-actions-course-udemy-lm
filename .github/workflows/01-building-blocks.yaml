@@ -1,7 +1,6 @@
 name: Building blocks
 
 on:
-  push:
   workflow_dispatch: 
 
 jobs:
