@@ -16,7 +16,7 @@ jobs:
     name: goodbye job
     runs-on: ubuntu-latest
     steps:
-      - name: Failed step
+      - name: Passed step
         run: |
           echo "I will Pass"
           exit 0
