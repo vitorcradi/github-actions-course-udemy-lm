@@ -1,0 +1,12 @@
+name: 02 - Worflow Events
+
+on:
+  push:
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: show the event trigger
+        run: |
+          echo "event name: ${{ github.event_name }}"
