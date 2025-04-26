@@ -15,9 +15,9 @@ jobs:
     name: goodbye job
     runs-on: ubuntu-latest
     steps:
-      - name: Passed step
+      - name: Successful step
         run: |
-          echo "I will Pass"
+          echo "I will succeed"
           exit 0
       - name: Say goodbye
         run: |
