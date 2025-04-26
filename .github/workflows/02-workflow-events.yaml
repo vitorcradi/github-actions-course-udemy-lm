@@ -13,4 +13,4 @@ jobs:
     steps:
       - name: show the event trigger
         run: |
-          echo "event name: ${{ github.event_name }}"
+          echo "I've been triggered by a(n) ${{ github.event_name }} event"
