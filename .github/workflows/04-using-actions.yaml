@@ -14,5 +14,5 @@ jobs:
 
       - name: Printing Folders
         run: |
-          echo "this folder structure is:""
+          echo "this folder structure is:"
           ls . -R
