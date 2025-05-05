@@ -10,15 +10,15 @@ jobs:
     steps:
       - name: Display Information
         run: |
-          echo "Github event name: ${{ github.event_name }}
-          echo "Github Ref: ${{ github.ref }}
-          echo "Github SHA: ${{ github.sha }}
-          echo "Github actor: ${{ github.actor }}
-          echo "Github Workflow: ${{ github.workflow }}
-          echo "Github Run ID: ${{ github.run_id }}
-          echo "Github Run Number: ${{ github.run_number }}
+          echo "Github event name: ${{ github.event_name }}"
+          echo "Github Ref: ${{ github.ref }}"
+          echo "Github SHA: ${{ github.sha }}"
+          echo "Github actor: ${{ github.actor }}"
+          echo "Github Workflow: ${{ github.workflow }}"
+          echo "Github Run ID: ${{ github.run_id }}"
+          echo "Github Run Number: ${{ github.run_number }}"
       - name: Retrieve Variable
         run: |
-          echo "content for MY_VAR: ${{ vars.MY_VAR }}
+          echo "content for MY_VAR: ${{ vars.MY_VAR }}"
         
           
