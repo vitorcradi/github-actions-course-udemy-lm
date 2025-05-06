@@ -1,12 +1,19 @@
 name: 06 - Contexts
-run-name: My Custom Workflow run name - ${{ runner.os }}
+run-name: 06 - Contexts | DEBUG - ${{ inputs.debug }}
 
 on:
   push:
-  workflow_dispatch: 
+  workflow_dispatch:
+    inputs:
+      debug:
+        description: check it for activating debug mode
+        type: boolean
+        default: false 
 
 jobs:
   echo-data:
+    name: My echo data job
+
     runs-on: ubuntu-latest
     steps:
       - name: Display Information
