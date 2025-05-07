@@ -22,7 +22,7 @@ jobs:
           echo "Runner OS: ${{ runner.os }}"
 
       - name: "[${{ inputs.debug }}] - Print when triggered from main"
-        if: ${{ inputs.debug == true && github.ref_name  == 'main' }}
+        if: ${{ github.ref_name }} == 'main'
         run: |
           echo "I was triggered by branch main"
 
