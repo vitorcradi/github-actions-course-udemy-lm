@@ -14,7 +14,7 @@ jobs:
 
     steps:
       - name: "Debug checker - print startup data - ${{ inputs.debug }}"
-        if: ${{ inputs.debug == true }}
+        if: ${{ inputs.debug }} == true
         run: |
           echo "Triggered by: ${{ github.event_name }}"
           echo "Branch: ${{ github.ref_name }}"
@@ -25,7 +25,7 @@ jobs:
         if: ${{ inputs.debug == true && github.ref_name  == 'main' }}
         run: |
           echo "I was triggered by branch main"
-          
+
       - name: Greetings
         run: echo "Hello World"
 
