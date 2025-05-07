@@ -15,7 +15,7 @@ jobs:
     steps:
       - name: "Debug checker - print startup data - ${{ inputs.debug }}"
         if: ${{ inputs.debug == true }}
-        #if: ${{ inputs.debug == true }} --> IT ALSO WORKS THIS WAY
+        #if: inputs.debug == true   --> IT ALSO WORKS THIS WAY
         run: |
           echo "Triggered by: ${{ github.event_name }}"
           echo "Branch: ${{ github.ref_name }}"
@@ -24,7 +24,7 @@ jobs:
 
       - name: "[${{ inputs.debug }}] - Print when triggered from main"
         if: ${{ inputs.debug == true && github.ref_name  == 'main' }}
-        #if: inputs.debug == true && github.ref_name  == 'main' --> IT ALSO WORKS THIS WAY
+        #if: inputs.debug == true && github.ref_name  == 'main'   --> IT ALSO WORKS THIS WAY
         
         run: |
           echo "I was triggered by branch main"
