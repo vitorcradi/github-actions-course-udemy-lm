@@ -24,7 +24,8 @@ jobs:
       - name: "[${{ inputs.debug }}] - Print when triggered from main"
         if: ${{ inputs.debug == true && github.ref_name  == 'main' }}
         run: |
-          echo "I was triggered
+          echo "I was triggered by branch main"
+          
       - name: Greetings
         run: echo "Hello World"
 
