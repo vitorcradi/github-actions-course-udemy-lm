@@ -1,0 +1,29 @@
+name: 09 - Using Functions
+
+on:
+  pull_resquests:
+  workflow_dispatch: 
+
+jobs:
+  echo1:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Failing Step
+        run: exit 1
+
+      - name: I will be skipped
+        if: success()
+        run: I will print if the previous steps succeed
+
+      - name: I will execute
+        if: failure()
+        run: I will print if any previous step fails.
+
+      - name: I will execute
+        if: !cancelled()
+        run: I will always print, expect if the workflow is cancelled.
+
+      - name: I will execute when cancelled
+        if: cancelled()
+        run: I will execute when cancelled
