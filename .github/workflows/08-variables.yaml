@@ -1,7 +1,7 @@
 name: 08 - Using Variables
 
 on:
-  push:
+  #push:
   workflow_dispatch: 
 
 env:
@@ -48,10 +48,12 @@ jobs:
     environment: prod
     env:
       OVERWRITTEN_ENV_VAR: ${{ vars.OVERWRITTEN_VAR || 'default_environment_value' }}
+      #env var set in case the OVERWRITTEN_VAR comes as empty
     steps:
       - name: Print Prod Variables
         run: |
-          echo "Org Overwritten var: ${{ env.OVERWRITTEN_ENV_VAR }}"
+          echo "Org Overwritten var: ${{ env.OVERWRITTEN_ENV_VAR }}"  --> using workflow env var to avoid coming empty
+          # echo "Org Overwritten var: ${{ vars.OVERWRITTEN_VAR }}"   --> using environment variable, which can come empty if not set
           echo "repo var: ${{ vars.REPOSITORY_VAR }}"
           echo "Environment var: ${{ vars.TARGET_VAR }}"
 
