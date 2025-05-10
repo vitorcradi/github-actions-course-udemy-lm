@@ -8,14 +8,21 @@ on:
       debug:
         type: boolean
         default: false
-  
+
+# Se below an example of setting a deafult value for a var definition that has the chance of coming as empty/null
+# Read the || as kinda "otherwise, in this case it's not a OR operator"
+env:
+  MY_VAR_WITH_DEFAULT: ${{ vars.MY_VAR || 'default_value' }} 
+
+
 jobs:
   echo:
     runs-on: ubuntu-latest
 
     steps:
       - name: "Debug checker - print startup data - ${{ inputs.debug && 'debug enabled' || 'debug disabled' }}"
-        if: ${{ inputs.debug == true }}
+        if: ${{ inputs.debug }}
+        # for boolean checks, only the variable inside an IF is enough for checking if it's true
         #if: inputs.debug == true   --> IT ALSO WORKS THIS WAY
         run: |
           echo "Triggered by: ${{ github.event_name }}"
@@ -23,9 +30,10 @@ jobs:
           echo "sha: ${{ github.sha }}"
           echo "Runner OS: ${{ runner.os }}"
 
-      - name: "[${{ inputs.debug }}] - Print when triggered from main"
-        if: ${{ inputs.debug == true && github.ref_name  == 'main' }}
-        #if: inputs.debug == true && github.ref_name  == 'main'   --> IT ALSO WORKS THIS WAY
+      - name: "[Debug] - Print when triggered from main"
+        if: ${{ inputs.debug && github.ref_name  == 'main' }}
+        #if: inputs.debug && github.ref_name  == 'main'   --> IT ALSO WORKS THIS WAY
+        #if: inputs.debug && github.ref  == 'refs/heads/main'   --> IT ALSO WORKS THIS WAY
         
         run: |
           echo "I was triggered by branch main"
