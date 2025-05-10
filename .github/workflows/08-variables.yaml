@@ -46,10 +46,12 @@ jobs:
   echo-prod: 
     runs-on: ubuntu-latest
     environment: staging
+    env:
+      OVERWRITTEN_ENV_VAR: ${{ vars.OVERWRITTEN_VAR || 'default_environment_value' }}
     steps:
       - name: Print Prod Variables
         run: |
-          echo "Org Overwritten var: ${{ vars.OVERWRITTEN_VAR }}"
+          echo "Org Overwritten var: ${{ env.OVERWRITTEN_ENV_VAR }}"
           echo "repo var: ${{ vars.REPOSITORY_VAR }}"
           echo "Environment var: ${{ vars.TARGET_VAR }}"
 
