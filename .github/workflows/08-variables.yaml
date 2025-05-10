@@ -45,7 +45,7 @@ jobs:
 
   echo-prod: 
     runs-on: ubuntu-latest
-    environment: staging
+    environment: prod
     env:
       OVERWRITTEN_ENV_VAR: ${{ vars.OVERWRITTEN_VAR || 'default_environment_value' }}
     steps:
