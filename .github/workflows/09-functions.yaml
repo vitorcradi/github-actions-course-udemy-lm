@@ -18,9 +18,7 @@ jobs:
           EOF
 
       - name: Bug Step
-        env:
-          PR_TITLE: ${{ github.event.pull_request.title}}
-        if: ${{ ! cancelled() && contains( '$PR_TITLE', 'fix')}}
+        if: ${{ ! cancelled() && contains(github.ever.pull_request.title, 'fix') }}
         run: echo I am a bug fix
 
       - name: Sleep for 20 seconds
