@@ -18,12 +18,15 @@ jobs:
 
   unit-tests:
     runs-on: ubuntu-latest
+    # continue on error should only be used for experimental features or similar use-cases
+    continue-on-error: true
     env:
       UNIT_TESTS_STATUS: ${{ inputs.pass-unit-tests }}
     steps:
       - name: Running unit tests
         if: ${{ inputs.pass-unit-tests }}
         run: |
+          #  three valid ways of outputting the inputs variable value
           echo "pass-unit-tests inputs is set to $UNIT_TESTS_STATUS"
           echo "pass-unit-tests inputs is set to ${{ env.UNIT_TESTS_STATUS }}"
           echo "pass-unit-tests inputs is set to ${{ inputs.pass-unit-tests }}"
