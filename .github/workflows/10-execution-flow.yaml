@@ -7,6 +7,7 @@ on:
       pass-unit-tests:
         type: boolean
         default: false
+        description: Whether the unit test will pass or not
 
 jobs:
   lint-build:
@@ -18,8 +19,8 @@ jobs:
 
   unit-tests:
     runs-on: ubuntu-latest
-    # continue on error should only be used for experimental features or similar use-cases
-    continue-on-error: true
+    # continue on error should only be used for experimental features or similar use-cases, should be sparingly used
+    #continue-on-error: true
     env:
       UNIT_TESTS_STATUS: ${{ inputs.pass-unit-tests }}
     steps:
