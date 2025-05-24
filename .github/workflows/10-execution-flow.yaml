@@ -26,6 +26,7 @@ jobs:
         run: |
           echo "pass-unit-tests inputs is set to $UNIT_TESTS_STATUS"
           echo "pass-unit-tests inputs is set to ${{ env.UNIT_TESTS_STATUS }}"
+          echo "pass-unit-tests inputs is set to ${{ inputs.pass-unit-tests }}"
           echo "Running tests..."
       - name: Failing tests
         if: ${{ !inputs.pass-unit-tests }}
