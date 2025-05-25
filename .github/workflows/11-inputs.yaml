@@ -2,7 +2,7 @@ name: 11 - Working with Inputs
 
 on:
   workflow_dispatch: 
-    inputs: ## available types are: string, number, choice, boolean and environment
+    inputs: ## when running from workflow dispatch available input types are: string, number, choice, boolean and environment
       dry-run:
         type: boolean
         description: "Skip deployment and only print build output"
