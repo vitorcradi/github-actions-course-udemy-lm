@@ -26,6 +26,9 @@ jobs:
         run: |
           echo "status=${{ inputs.build-status }}" >> $GITHUB_OUTPUT
           echo "output1=value1" >> $GITHUB_OUTPUT
+      - name: Steps with mistake
+        run: |
+          echo "the value of the GITHUB_OUTPUT variable is: $GITHUB_OUTPUT"
           echo "output2=value2" >> $GITHUB_OUTPUT
           echo the value of the GITHUB_OUTPUT variable is: $(cat $GITHUB_OUTPUT)
           echo "mistake=true" > $GITHUB_OUTPUT
