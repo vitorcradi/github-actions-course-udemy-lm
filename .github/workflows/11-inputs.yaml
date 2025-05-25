@@ -8,7 +8,7 @@ on:
         description: "Skip deployment and only print build output"
         default: false
       target:
-        type:  environment ## it will produce a dropbox with the available environments created at the repo configuration level
+        type:  environment ## its going to feche the environments in the Github repo and will produce a dropbox with the available ones
         required: true
         description: "Which environment the workflow will target"
       tag:
