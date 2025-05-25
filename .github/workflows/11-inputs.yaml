@@ -2,13 +2,13 @@ name: 11 - Working with Inputs
 
 on:
   workflow_dispatch: 
-    inputs:
+    inputs: ## available types are: string, number, choice, boolean and environment
       dry-run:
         type: boolean
         description: "Skip deployment and only print build output"
         default: false
       target:
-        type:  environment ## available types are: string, number, choice, boolean and environment
+        type:  environment ## it will produce a dropbos with the available environments created at the repo configuration level
         required: true
         description: "Which environment the workflow will target"
       tag:
