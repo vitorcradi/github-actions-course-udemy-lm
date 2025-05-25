@@ -24,6 +24,7 @@ jobs:
         id: build
         run: |
           echo "status=${{ inputs.build-status }}" >> $GITHUB_OUTPUT
+          echo "some value test" >> $GITHUB_OUTPUT
           echo the value of the GITHUB_OUTPUT variable is: $(cat $GITHUB_OUTPUT)
 
 
