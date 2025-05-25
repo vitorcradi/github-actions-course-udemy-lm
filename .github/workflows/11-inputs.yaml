@@ -9,6 +9,7 @@ on:
         default: false
       target:
         type:  environment ## available types are: string, number, choice, boolean and environment
+        required: true
         description: "Which environment the workflow will target"
       tag:
         type: choice
