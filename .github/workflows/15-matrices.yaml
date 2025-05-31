@@ -41,3 +41,7 @@ jobs:
       - name: Fail if experimental
         if: ${{ matrix.tag == 'experimental' }}
         run: exit 1
+      
+      - name: Setting Job to success status
+        if: ${{ !cancelled() }}
+        run: masking the job result
