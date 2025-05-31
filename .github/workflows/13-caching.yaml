@@ -22,8 +22,8 @@ jobs:
     defaults:
       run:
         working-directory: 13-caching/react-app
-    # outputs:
-    #   cache: ${{ steps.cache.cache-hit }}
+     outputs:
+       cache: ${{ steps.cache.cache-hit }}
 
     steps:
       - name: Checkout code
@@ -40,7 +40,7 @@ jobs:
         uses: actions/cache@v3
         with: 
           key: deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}
-          path: '13-caching/react-app/node_modules'
+          path: 13-caching/react-app/node_modules
 
       - name: Install dependencies
         if: ${{ steps.cache.outputs.cache-hit == 'true' }}
