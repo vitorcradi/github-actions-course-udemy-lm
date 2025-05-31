@@ -44,4 +44,4 @@ jobs:
       
       - name: Setting Job to success status
         if: ${{ !cancelled() }}
-        run: masking the job result
+        run: echo masking the job result
