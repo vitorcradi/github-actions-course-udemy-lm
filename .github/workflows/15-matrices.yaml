@@ -32,7 +32,7 @@ jobs:
 
       - name: Perform some tests
         run: |
-          echo "running tests on OS ${{ matrix.operational-systems }} and NodeJS ${{ matrix.node-versions }}"
+          echo "running tests on OS ${{ matrix.operational-systems }} and NodeJS ${{ matrix.node-versions }}, the tag is ${{ matrix.tag || 'default' }}"
           sleep 10
 
       - name: Upload test results
