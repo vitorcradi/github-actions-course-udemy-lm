@@ -15,7 +15,7 @@ jobs:
           - 21.x
         operational-systems:
           - ubuntu-latest
-          - windows-latest
+          - windows-latest 
     steps:
       - name: Setup Node
         uses: actions/setup-node@v4
