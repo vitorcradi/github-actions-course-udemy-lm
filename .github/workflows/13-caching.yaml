@@ -22,8 +22,8 @@ jobs:
     defaults:
       run:
         working-directory: 13-caching/react-app
-    outputs:
-      cache: ${{ steps.cache.cache-hit }}
+    # outputs:
+    #   cache: ${{ steps.cache.cache-hit }}
 
     steps:
       - name: Checkout code
@@ -35,15 +35,19 @@ jobs:
           node-version: "${{ inputs.node-version }}"
 
       - name: Download cached dependencies
+        # If there is a cache, the cache-hit output will be set to 'true'
         id: cache
         if: ${{ inputs.use-cache }}
         uses: actions/cache@v3
         with: 
-          key: deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}
+          key: 
+            deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}
           path: 13-caching/react-app/node_modules
 
       - name: Install dependencies
-        if: ${{ steps.cache.outputs.cache-hit == 'true' }}
+        # If there is a cache, the cache-hit output will be set to 'true', 
+        ## so to run if there is no cache, the operator must be different than true
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
         run: |
           npm ci
 
