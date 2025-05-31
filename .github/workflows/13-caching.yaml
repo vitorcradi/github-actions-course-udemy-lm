@@ -19,6 +19,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    needs: install-deps
     defaults:
       run:
         working-directory: 13-caching/react-app
@@ -37,19 +38,19 @@ jobs:
       - name: Download cached dependencies
         # If there is a cache, the cache-hit output will be set to 'true'
         id: cache
-        if: ${{ inputs.use-cache }}
+        #if: ${{ inputs.use-cache }}
         uses: actions/cache@v3
         with: 
-          key: 
-            deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}
+          # key: deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}
+          key: ${{ needs.install-deps.outputs.cache-key }}
           path: 13-caching/react-app/node_modules
 
-      - name: Install dependencies
-        # If there is a cache, the cache-hit output will be set to 'true', 
-        ## so to run if there is no cache, the operator must be different than true
-        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
-        run: |
-          npm ci
+      # - name: Install dependencies
+      #   # If there is a cache, the cache-hit output will be set to 'true', 
+      #   ## so to run if there is no cache, the operator must be different than true
+      #   if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+      #   run: |
+      #     npm ci
 
       - name: Testing
         run: |
@@ -62,5 +63,68 @@ jobs:
       - name: Deploying to nonprod
         run: |
           echo "Deploying to nonprod"
+  
+  install-deps:
+    runs-on: ubuntu-linux
+    outputs:
+      cache-key: ${{ steps.cache-key.outputs.CACHE_KEY }}
+    defaults:
+      run:
+        working-directory: 13-caching/react-app
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
+      - name: Setup Node
+        uses: actions/Setup-node@v4
+        with:
+          node-version: "${{ inputs.node-version }}"
 
+      - name: Calculate cache key
+        id: cache-key
+        run: |
+          echo "CACHE_KEY=deps-node-modules-${{ hashFiles('13-caching/react-app/package-lock.json') }}" >> $GITHUB_OUTPUT
+
+      - name: Download cached dependencies
+        id: cache
+        if: ${{ inputs.use-cache }}
+        uses: actions/cache@v3
+        with:
+          key: ${{ steps.cache-key.outputs.CACHE_KEY}}
+          path: 13-caching/react-app/node_modules
+
+      - name: Install dependencies
+        # If there is a cache, the cache-hit output will be set to 'true', 
+        ## so to run if there is no cache, the operator must be different than true
+        if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+        run: |
+          npm ci
+
+  linting:
+    runs-on: ubuntu-latest
+    needs: install-deps
+    defaults:
+      run:
+        working-directory: 13-caching/react-app
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/Setup-node@v4
+        with:
+          node-version: "${{ inputs.node-version }}"
+      
+      - name: Download cached dependencies
+        id: cache
+        uses: actions/cache@v3
+        with:
+          key: ${{ needs.install-deps.outputs.cache-key }}
+          path: 13-caching/react-app/node_modules
+
+      - name: Testing
+        run: |
+          npm run test
+
+      - name: Linting
+        run: echo Linting...
