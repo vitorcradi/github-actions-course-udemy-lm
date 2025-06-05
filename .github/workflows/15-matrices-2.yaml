@@ -32,7 +32,7 @@ jobs:
             size: small
           - specie: dog
             size: medium
-          - cat:
+          - specie: cat
             colour: golden
     steps:
       - name: Animal Combination
