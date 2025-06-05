@@ -26,20 +26,25 @@ jobs:
         include:
           - specie: camel
             size: large
-            colour: yellow
+            #colour: yellow
         exclude:
           - specie: horse
             size: small
+          - specie: dog
+            size: medium
+          - cat:
+            colour: golden
     steps:
       - name: Animal Combination
         id: echo-combination
         run: |
           echo this is a ${{ matrix.specie }} ${{ matrix.size }} ${{ matrix.colour }}
-          echo "echo_out=this is a ${{ matrix.specie }} ${{ matrix.size }} ${{ matrix.colour }}" >> $GITHUB_OUTPUT
+          echo "forecho_out=this is a ${{ matrix.specie }} ${{ matrix.size }} ${{ matrix.colour }}" >> $GITHUB_OUTPUT
   
   animal-combination-sorted:
     runs-on: ubuntu-latest
     needs: animal-matrix
+    name: ${{ matrix.colour }} ${{ matrix.objects }}
     strategy:
       matrix:
         objects:
@@ -48,9 +53,12 @@ jobs:
         colour:
           - blue
           - red
+        exclude:
+          - colour: red
+            objects: pencil
     steps:
       - name: objects combination
-        run: echo ${{ matrix.colour.objects }}
+        run: echo ${{ matrix.colour }} ${{ matrix.objects }}
       - name: animal data import
         run: echo ${{ needs.animal-matrix.outputs.echo-combination }}
     
