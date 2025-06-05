@@ -1,0 +1,59 @@
+name: 15 - Working with Matrices
+
+on:
+  workflow_dispatch: 
+
+jobs:
+  animal-matrix:
+    runs-on: ubuntu-latest
+    name: ${{ matrix.specie }} ${{ matrix.size }} ${{ matrix.colour }}
+    outputs:
+      echo-combination: ${{ steps.echo-combination.outputs.echo_out }}
+    strategy: 
+      matrix:
+        specie:
+          - dog
+          - cat
+          - horse
+        size:
+          - small
+          - medium
+          - large
+        colour:
+          - gray
+          - black
+          - golden
+        include:
+          - specie: camel
+            size: large
+            colour: yellow
+        exclude:
+          - specie: horse
+            size: small
+    steps:
+      - name: Animal Combination
+        id: echo-combination
+        run: |
+          echo this is a ${{ matrix.specie }} ${{ matrix.size }} ${{ matrix.colour }}
+          echo "echo_out=this is a ${{ matrix.specie }} ${{ matrix.size }} ${{ matrix.colour }}" >> $GITHUB_OUTPUT
+  
+  animal-combination-sorted:
+    runs-on: ubuntu-latest
+    needs: animal-matrix
+    strategy:
+      matrix:
+        objects:
+          - car
+          - pencil
+        colour:
+          - blue
+          - red
+    steps:
+      - name: objects combination
+        run: echo ${{ matrix.colour.objects }}
+      - name: animal data import
+        run: echo ${{ needs.animal-matrix.outputs.echo-combination }}
+    
+
+
+
