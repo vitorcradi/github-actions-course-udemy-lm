@@ -28,15 +28,20 @@ runs:
       with:
         key: deps-node_modules-${{ inputs.target-env }}-${{ hashFiles(format('{0}/{1}', inputs.working-dir, 'package-lock.json')) }}
         path: ${{ inputs.working-dir }}/node_modules
-    - name: Install Dependencies Dev
-      if: ${{ steps.cache.outputs.cache-hit != 'true' && inputs.target-env == 'dev' }}
+    # - name: Install Dependencies Dev
+    #   if: ${{ steps.cache.outputs.cache-hit != 'true' && inputs.target-env == 'dev' }}
+    #   working-directory: ${{ inputs.working-dir }}
+    #   shell: bash
+    #   run: |
+    #     npm ci
+    # - name: Install Dependencies Prod
+    #   if: ${{ steps.cache.outputs.cache-hit != 'true' && inputs.target-env == 'prod' }}
+    #   working-directory: ${{ inputs.working-dir }}
+    #   shell: bash
+    #   run: |
+    #     npm ci --omit=dev
+    - name: Install Dependencies Unified
+      if: ${{ steps.cache.outputs.cache-hit != 'true' }}
       working-directory: ${{ inputs.working-dir }}
       shell: bash
-      run: |
-        npm ci
-    - name: Install Dependencies Prod
-      if: ${{ steps.cache.outputs.cache-hit != 'true' && inputs.target-env == 'prod' }}
-      working-directory: ${{ inputs.working-dir }}
-      shell: bash
-      run: |
-        npm ci --omit=dev
+      run: ${{ inputs.target-env == 'dev' && 'npm ci' || inputs.target-env == 'prod' && 'npm ci --omit=dev' }}
