@@ -9,6 +9,7 @@ inputs:
   working-dir:
     description: The working directory of the application
     default: .
+    required: false
 
 runs:
   using: composite
@@ -22,7 +23,7 @@ runs:
       uses: actions/cache@v4
       with:
         key: deps-node_modules-${{ hashFiles(format('{0}/{1}', inputs.working-dir, 'package-lock.json')) }}
-        path: ${{ inputs.working-dir }}
+        path: ${{ inputs.working-dir }}/node_modules
     - name: Install Dependencies
       if: ${{ steps.cache.outputs.cache-hit != 'true' }}
       working-directory: ${{ inputs.working-dir }}
