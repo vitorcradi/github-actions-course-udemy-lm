@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Setup Node and NPM deps
-        uses: ./.github/actions/composite-cache-deps/actions.yaml
+        uses: ./.github/actions/composite-cache-deps/action.yaml
         with:
           node-version: '20.x'
           working-dir: ${{ env.working-directory }}
