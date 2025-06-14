@@ -40,6 +40,3 @@ runs:
       shell: bash
       run: |
         npm ci --omit=dev
-
-
-${{ steps.cache.outputs.cache-hit != 'true' }}
