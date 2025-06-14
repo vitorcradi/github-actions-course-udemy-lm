@@ -44,4 +44,5 @@ runs:
       if: ${{ steps.cache.outputs.cache-hit != 'true' }}
       working-directory: ${{ inputs.working-dir }}
       shell: bash
+      ## checks variables values: implicit if target is dev than do npm ci, else if target is prod than do npm ci --omit=dev
       run: ${{ inputs.target-env == 'dev' && 'npm ci' || inputs.target-env == 'prod' && 'npm ci --omit=dev' }}
