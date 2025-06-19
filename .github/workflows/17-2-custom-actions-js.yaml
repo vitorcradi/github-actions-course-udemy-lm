@@ -14,6 +14,7 @@ on:
         required: false
       working-directory:
         description: The working directory of the project to check for dependency updates
+        default: .
         required: true
       ### The gh-token input for the action can be retrieved from the workflow via the secrets.GITHUB_TOKEN secret, 
       ##### and does not need to be provided as an input to the workflow.
@@ -21,6 +22,7 @@ on:
       #   description: Authentication token with repository access. Must have write access to contents and pull-requests
       #   required: true
       debug:
+        type: boolean
         description: Whether the output debug messages to the console
         required: false
 
