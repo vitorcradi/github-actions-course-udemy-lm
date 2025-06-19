@@ -6,15 +6,15 @@ on:
     inputs:
       base-branch:
         description: The branch used as the base for the dependency update checks
-        default: main
-        required: false
+        # In this case the default value doesnt need to be provided as the action has a dafault value set in its input configuration for this input
+        #default: main
       target-branch:
         description: The branch from which the PR is created
-        default: update-dependencies
-        required: false
+        # In this case the default value doesnt need to be provided as the action has a dafault value set in its input configuration for this input
+        #default: update-dependencies
       working-directory:
         description: The working directory of the project to check for dependency updates
-        default: .
+        default: 17-custom-actions/react-app
         required: true
       ### The gh-token input for the action can be retrieved from the workflow via the secrets.GITHUB_TOKEN secret, 
       ##### and does not need to be provided as an input to the workflow.
@@ -24,7 +24,6 @@ on:
       debug:
         type: boolean
         description: Whether the output debug messages to the console
-        required: false
 
 jobs:
   dependency-update:
