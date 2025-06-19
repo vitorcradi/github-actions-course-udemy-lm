@@ -6,12 +6,12 @@ on:
     inputs:
       base-branch:
         description: The branch used as the base for the dependency update checks
-        # In this case the default value doesnt need to be provided as the action has a dafault value set in its input configuration for this input
-        #default: main
+        # In this case the default value still needs to be provided even if the action has a dafault value set in its input configuration for this input
+        default: main
       target-branch:
         description: The branch from which the PR is created
-        # In this case the default value doesnt need to be provided as the action has a dafault value set in its input configuration for this input
-        #default: update-dependencies
+        # In this case the default value still needs to be provided even if the action has a dafault value set in its input configuration for this input
+        default: update-dependencies
       working-directory:
         description: The working directory of the project to check for dependency updates
         default: 17-custom-actions/react-app
