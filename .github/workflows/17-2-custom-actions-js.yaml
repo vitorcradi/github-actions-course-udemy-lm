@@ -39,6 +39,7 @@ jobs:
           base-branch: ${{ inputs.base-branch }}
           target-branch: ${{ inputs.target-branch }}
           working-directory: ${{ inputs.working-directory }}
-          gh-token: ${{ github.token }}
+          gh-token: ${{ secrets.GITHUB_TOKEN }}
+          #gh-token: ${{ github.token }} -------> both github.token and secrets.GITHUB_TOKEN are equivalent contexts
           debug: ${{ inputs.debug }}
         
