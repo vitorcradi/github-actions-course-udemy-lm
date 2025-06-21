@@ -16,14 +16,17 @@ on:
         description: The working directory of the project to check for dependency updates
         default: 17-custom-actions/react-app
         required: true
-      ### The gh-token input for the action can be retrieved from the workflow via the secrets.GITHUB_TOKEN secret, 
-      ##### and does not need to be provided as an input to the workflow.
-      # gh-token:
-      #   description: Authentication token with repository access. Must have write access to contents and pull-requests
-      #   required: true
       debug:
         type: boolean
         description: Whether the output debug messages to the console
+      ### The gh-token input for the action can be retrieved from the workflow via the secrets.GITHUB_TOKEN secret, 
+      ##### and does not need to be provided as an input to the workflow.
+
+
+permissions:
+  contents: write
+  pull-requests: write
+
 
 jobs:
   dependency-update:
@@ -36,5 +39,6 @@ jobs:
           base-branch: ${{ inputs.base-branch }}
           target-branch: ${{ inputs.target-branch }}
           working-directory: ${{ inputs.working-directory }}
+          gh-token: ${{ github.token }}
           debug: ${{ inputs.debug }}
         
