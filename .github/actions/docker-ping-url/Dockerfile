@@ -1,5 +1,9 @@
 FROM python:alpine3.19
 
-COPY requirements.txt .
+WORKDIR /app
 
-RUN pip install -r requirements.txt && python main.py
+COPY . .
+
+RUN pip install --no-cache-dir -r requirements.txt
+
+CMD ["python", "main.py"]
