@@ -53,11 +53,12 @@ import subprocess
 def run():
   url = getenv("INPUT_URL")
   delay = getenv("INPUT_DELAY")
-  max_trials = getenv("INPUT_MAX_TRIALS")
+  max_trials = int(getenv("INPUT_MAX_TRIALS"))
   ping_url(url, delay, max_trials)
 
 def ping_url(url, delay, max_trials):
   curl_command = "curl ${url}"
+  print(curl_command)
   sleep_command = "sleep ${delay}"
   trials = 1
   while trials <= max_trials:
