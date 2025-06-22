@@ -57,8 +57,10 @@ def run():
   ping_url(url, delay, max_trials)
 
 def ping_url(url, delay, max_trials):
-  curl_command = "curl ${url}"
+  curl_command = "curl " + url
+  curl_command1 = f"curl {url}"
   print(curl_command)
+  print(curl_command1)
   sleep_command = "sleep ${delay}"
   trials = 1
   while trials <= max_trials:
