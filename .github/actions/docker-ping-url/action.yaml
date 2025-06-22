@@ -7,10 +7,11 @@ inputs:
     required: true
   max_trials:
     description: Maximum number of trials until action fails
-    default: 10
+    # Default set with single quotes as the only accepted type is string
+    default: '10'
   delay:
     description: Delay in seconds between trials
-    default: 5
+    default: '5'
 
 
 runs:

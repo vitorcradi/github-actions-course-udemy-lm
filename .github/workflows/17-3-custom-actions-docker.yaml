@@ -3,9 +3,19 @@ name: 17 - 3 - Custom Actions - Docker
 on:
   workflow_dispatch: 
     inputs:
+      ## Whenever you pass values to a custom action keep in mind that actions can only deal with string type values
       url:
+        type: choice
+        options:
+          - 'https://www.google.com'
+          - 'https://www.googlllllle.cooooom'
         default: 'https://www.google.com'
-
+      max_trials:
+        description: Maximum trials until action fails
+        default: '10'
+      delay:
+        description: Delay in seconds between trials
+        default: '5'
 jobs:
   ping-url:
     runs-on: ubuntu-latest
