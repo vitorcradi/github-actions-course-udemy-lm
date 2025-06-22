@@ -2,14 +2,16 @@ name: Ping URL
 description: "Ping URL until maximum trials have exceeded. If result is not 200 until then, fails the action."
 
 inputs:
-  url:
+  ## GitHub stores input parameters as environment variables. We recommend using lowercase input ids.
+  ## For docker custom actions, inputs are avaliable as variables for the container and the sintax is INPUT_<INPUT-ID>, ex: INPUT_URL
+  url: # will be available as INPUT_URL
     description: URL to ping
     required: true
-  max_trials:
+  max_trials: #INPUT_MAX_TRIALS
     description: Maximum number of trials until action fails
     # Default set with single quotes as the only accepted type is string
     default: '10'
-  delay:
+  delay: #INPUT_DELAY
     description: Delay in seconds between trials
     default: '5'
 
@@ -17,7 +19,3 @@ inputs:
 runs:
   using: docker
   image: Dockerfile
-  # args:
-  #   - ${{ inputs.url }}
-  #   - ${{ inputs.max_trials }}
-  #   - ${{ inputs.delay }}
