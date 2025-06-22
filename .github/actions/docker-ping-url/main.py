@@ -2,9 +2,9 @@ from os import getenv
 import subprocess
 
 def run():
-  url = getenv(url)
-  delay = getenv(delay)
-  max_trials = getenv(max_trials)
+  url = getenv(INPUT_URL)
+  delay = getenv(INPUT_DELAY)
+  max_trials = getenv(INPUT_MAX_TRIALS)
   ping_url(url, delay, max_trials)
 
 def ping_url(url, delay, max_trials):
