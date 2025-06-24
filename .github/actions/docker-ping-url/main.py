@@ -29,7 +29,7 @@ def run():
   website_url = getenv("INPUT_URL")
   delay = int(getenv("INPUT_DELAY"))
   max_trials = int(getenv("INPUT_MAX_TRIALS"))
-  github_output_file_path = getenv("INPUT_GITHUB_OUTPUT")
+  github_output_file_path = getenv("GITHUB_OUTPUT")
 
   website_reachable = ping_url(website_url, delay, max_trials)
 
