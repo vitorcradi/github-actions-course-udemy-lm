@@ -3,7 +3,7 @@ import requests
 import time
 
 def write_to_output(file_path, key, value):
-  with open (file, "a") as file:
+  with open (file_path, "a") as file:
     print(f'{key}={value}', file=file)
     
 
