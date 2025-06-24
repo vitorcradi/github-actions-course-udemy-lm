@@ -2,9 +2,9 @@ from os import getenv
 import requests
 import time
 
-def write_to_output(website_url, file):
-  with open (file, "a"):
-    print(f'url-reachable={website_url}', file=file)
+def write_to_output(file_path, key, value):
+  with open (file, "a") as file:
+    print(f'{key}={value}', file=file)
     
 
 def ping_url(url, delay, max_trials):
@@ -33,12 +33,12 @@ def run():
 
   website_reachable = ping_url(website_url, delay, max_trials)
 
+  write_to_output(github_output_file_path, 'url-reachable', website_reachable)
+
   if not website_reachable:
     raise Exception(f"Website {website_url} is malformed or unreachable.")
   
   print(f"Website {website_url} is reachable.")
-
-  write_to_output(website_url, github_output_file_path)
 
 if __name__ == "__main__":
   print("ping test")
