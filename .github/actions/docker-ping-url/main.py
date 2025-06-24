@@ -2,6 +2,11 @@ from os import getenv
 import requests
 import time
 
+def write_to_output(website_url, file):
+  with open (file, "a"):
+    print(f'url-reachable={website_url}', file=file)
+    
+
 def ping_url(url, delay, max_trials):
   trials = 0
 
@@ -24,6 +29,7 @@ def run():
   website_url = getenv("INPUT_URL")
   delay = int(getenv("INPUT_DELAY"))
   max_trials = int(getenv("INPUT_MAX_TRIALS"))
+  github_output_file_path = getenv("INPUT_GITHUB_OUTPUT")
 
   website_reachable = ping_url(website_url, delay, max_trials)
 
@@ -32,6 +38,7 @@ def run():
   
   print(f"Website {website_url} is reachable.")
 
+  write_to_output(website_url, github_output_file_path)
 
 if __name__ == "__main__":
   print("ping test")
